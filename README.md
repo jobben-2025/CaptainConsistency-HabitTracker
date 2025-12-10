@@ -35,18 +35,30 @@ FR010	Responsive Design	                Ensure the application works well on bot
 
 ### Projected file structure:
 
-#habit-tracker/
-#├── src/
-#│   ├── components/
-#│   │   ├── HabitForm.jsx
-#│   │   ├── HabitList.jsx
-#│   │   ├── HabitListItem.jsx
-#│   │   ├── Header.jsx
-#│   │   └── ProgressActions.jsx
-#│   ├── App.jsx
-#│   ├── App.css
-#│   ├── index.css
-#│   └── main.jsx
+habit-tracker/
+
+├── src/
+
+│   ├── components/
+
+│   │   ├── HabitForm.jsx
+
+│   │   ├── HabitList.jsx
+
+│   │   ├── HabitListItem.jsx
+
+│   │   ├── Header.jsx
+
+│   │   └── ProgressActions.jsx
+
+│   ├── App.jsx
+
+│   ├── App.css
+
+│   ├── index.css
+
+│   └── main.jsx
+
 
 
 ### Resources
