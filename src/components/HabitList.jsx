@@ -2,7 +2,7 @@ import { useState } from "react";
 import HabitListItem from "./HabitListItem";
 
 
-const HabitList = ({ items }) => {
+const HabitList = ({ items, setItems }) => {
     // const [newItems, setNewItems] = useState(items);
     
 
@@ -19,7 +19,8 @@ const HabitList = ({ items }) => {
         >
             {items.map((item) => {
                 return (
-                <HabitListItem key={item.id} item={item} />
+                <HabitListItem key={item.id} item={item} setItems={setItems} />
+                // <HabitListItem key={item.id} {...item} />
 
 
                 )
