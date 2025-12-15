@@ -10,6 +10,13 @@ const HabitList = ({ items, setItems }) => {
     //     const newItems = items.filter((item) => item.id !== id)
     //     setNewItems({...items, newItems})
     // }
+    const onItemUpdate = (id, updates) => {
+        setItems((prevItems) =>
+            prevItems.map((item) =>
+                item.id === id ? { ...item, ...updates } : item
+            )
+        );
+    };
 
 
 
@@ -19,10 +26,13 @@ const HabitList = ({ items, setItems }) => {
         >
             {items.map((item) => {
                 return (
-                <HabitListItem key={item.id} item={item} setItems={setItems} />
+                <HabitListItem 
+                key={item.id} 
+                item={item} 
+                setItems={setItems} 
+                onItemUpdate={onItemUpdate}
+                />
                 // <HabitListItem key={item.id} {...item} />
-
-
                 )
             })}
         </ul>

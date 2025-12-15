@@ -2,10 +2,14 @@ const HabitForm = ({setItems}) => {
     const submit = (e) => {
         e.preventDefault();
 
+        const frequencyValue = parseInt(e.target.elements.frequency.value) || 1;
+
         const newItem = {
             id: crypto.randomUUID(3),
             name: e.target.elements.name.value,
-            frequency: e.target.elements.frequency.value,
+            frequency: frequencyValue,
+            counter: 0,
+            isCompleted: false,
         };
 
         setItems((items) => [...items, newItem])

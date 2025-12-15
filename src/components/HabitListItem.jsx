@@ -1,8 +1,11 @@
-import { useState } from "react"
+// import { useState } from "react"
 
-const HabitListItem = ({ item, setItems }) => {
-    const [counter, setCounter] = useState(0);
-    const limit = item.frequency;  // how many times a day = total amount of counts
+const HabitListItem = ({ item, setItems, onItemUpdate }) => {
+    // const [counter, setCounter] = useState(item.counter || 0);
+    const counter = item.counter || 0;
+    const limit = parseInt(item.frequency)
+
+    const isCompleted = counter >= limit;
 
     const handleDelete = () => {
         setItems((items) => {
@@ -10,12 +13,31 @@ const HabitListItem = ({ item, setItems }) => {
         })
     }
 
+    const handleIncrement = () => {
+        if (counter < limit) {
+            const newCounter = counter+1;
+            
+
+            onItemUpdate(item.id, {
+                counter: newCounter,
+                isCompleted: newCounter >= limit
+            });
+
+            
+
+            if (newCounter > limit) {
+                alert("You are done with this task for today, yay!")
+            }
+        } else {
+            alert("You are done with this task for today, yay!")
+        }
+    }
 
     
     return (
-        <li className="flex gap-3 justify-center shadow rounded p-2">
+        <li className="flex gap-3 justify-center p-2">
             {
-                counter==limit ?
+                isCompleted ?
                 <p className="flex-4 text-xl text-green-800 bg-green-200 rounded-4xl pl-3">
                 {item.name} <br />
                 Done: {counter} / {limit} x/day</p>
@@ -25,14 +47,10 @@ const HabitListItem = ({ item, setItems }) => {
             }
 
             
-            <button className="flex-1 border border-red-900 rounded-4xl bg-gray-200 cursor-pointer text-red-900 p-2"
-            onClick={(e) => {
-                if (counter < limit) {
-                setCounter(counter +1);
-            } else {
-                alert("You are done with this task for today, yay!")
-            }
-            }}>Did it once!</button>
+<button 
+            className="flex-1 border border-red-900 rounded-4xl bg-gray-200 cursor-pointer text-red-900 p-2"
+            onClick={handleIncrement}
+            >Did it once!</button>
 
             <button
             className="flex-1 text-red-900 font-bold border bg-gray-200 rounded-4xl"

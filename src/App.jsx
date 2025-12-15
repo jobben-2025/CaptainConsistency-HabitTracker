@@ -8,12 +8,16 @@ import logo from './assets/CC1.webp'
 
 import HabitForm from './components/HabitForm'
 import HabitList from './components/HabitList';
+import ProgressActions from './components/ProgressActions';
 
 
 
 function App() {
   const [items, setItems] = useState([]);
-   
+  
+  const totalHabits = items.length;
+  const completedHabits = items.filter(item => item.isCompleted).length;
+  const progressPercentage = totalHabits > 0 ? Math.round((completedHabits / totalHabits)*100) : 0;
 
   return (
     <>
@@ -41,17 +45,20 @@ function App() {
           <button onClick={(e) => {
             setItems([])
           }}
-          className='bg-red-600 text-grey-500 px-2 py-1 rounded-2xl mb-5 w-full'>
+          className='bg-red-600 text-grey-500 px-4 py-1 rounded-2xl mb-5 w-full'>
             Delete all items
             </button>
-          
         </div>
 
-        {/* Display here the total progress tracking (%) and how many habits are completed as well as total amount of habits */}
-
         
-
-
+        <div className='text-center bg-red-300 rounded-4xl text-white'>
+            <ProgressActions 
+            totalHabits={totalHabits}
+            completedHabits={completedHabits}
+            progressPercentage={progressPercentage}
+        />
+        </div>
+        
 
       </div>
       <div className='flex-1 p-6 relative right-0 top-18'>
@@ -66,9 +73,6 @@ function App() {
         <div className='flex-1 pr-6 align-right'>(c) Copyright - Captain Consistency LLC</div>
         
       </div>
-
-
-
 
 
     </>
